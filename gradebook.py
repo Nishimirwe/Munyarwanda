@@ -64,15 +64,80 @@ class GradeBook:
         else:
             print("Invalid")
 
-    def passes(self):
-        winners=set()
-        file=open("passes.txt",'w')
-        for course in list(self.courses.values()):
-            studs=course.getClasslist()
-            for st in studs:
-                st_percent=st.percentageGen()
-                if st_percent < 40:
-                    winners.add((st.getRollNum(),st.getName()))
+    def referrals(self):
+        
+        courses=self.courses
+        studentsDictionary={}
+        limiter=0
+        rollNums=[]
+        f=open("referrals.txt", 'w')
+        for course in courses.values():
+            if limiter==0:
+                studentList=course.getClasslist()
+                for student in studentList:
+                    studentsDictionary[student.getRollNum()]=student
+                    rollNums.append(student.getRollNum())
+                limiter+=1    
+                
+        for student in studentsDictionary:
+            for course in courses.values():
+                studentList=course.getClasslist()
+                for i in studentList:
+                    if i.getRollNum()==studentsDictionary[student].getRollNum() and i.percentageGen()<40:
+                        if studentsDictionary[student].getRollNum() in rollNums:   
+                                f.write(studentsDictionary[student].getRollNum()  + "  " 
+                                        + studentsDictionary[student].getName())
+                                f.write("\n")
+                                rollNums.remove(studentsDictionary[student].getRollNum())  
+                        f.write("     "+ course.getCourseID() + "   " + course.getCourseName() + "  " 
+                                + str(i.percentageGen()) + "  " + i.gradeGen())
+                        f.write("\n")
+        f.close()                 
+                        
+    def transcripts(self):
+        
+        courses=self.courses
+        studentsDictionary={}
+        limiter=0
+        rollNums=[]
+        f=open("transcripts.txt", 'w')
+        for course in courses.values():
+            if limiter==0:
+                studentList=course.getClasslist()
+                for student in studentList:
+                    studentsDictionary[student.getRollNum()]=student
+                    rollNums.append(student.getRollNum())
+                limiter+=1    
+                
+        for student in studentsDictionary:
+            for course in courses.values():
+                studentList=course.getClasslist()
+                for i in studentList:
+                    if i.getRollNum()==studentsDictionary[student].getRollNum():
+                        if studentsDictionary[student].getRollNum() in rollNums: 
+                                f.write("---------------------------------------------------------")
+                                f.write("\n") 
+                                f.write(studentsDictionary[student].getRollNum()  + "  " 
+                                        + studentsDictionary[student].getName())
+                                f.write("\n")
+                                rollNums.remove(studentsDictionary[student].getRollNum())  
+                        f.write(course.getCourseID() + "   " + course.getCourseName() + "  " 
+                                + str(i.percentageGen()) + "  " + i.gradeGen())
+                        f.write("\n")                
+            f.write("----------------------------------------------------------------------")
+            f.write("\n") 
+                
+        
+
+    # def passes(self):
+    #     winners=set()
+    #     file=open("passes.txt",'w')
+    #     for course in list(self.courses.values()):
+    #         studs=course.getClasslist()
+    #         for st in studs:
+    #             st_percent=st.percentageGen()
+    #             if st_percent < 40:
+    #                 winners.add((st.getRollNum(),st.getName()))
         
 #You may define any additional claases or functions below this comment.
 
@@ -83,6 +148,8 @@ def testGradeBook():
     g.readManyFiles()
     print(len(g.courses))
     g.prinTranscript("S100")
+    g.referrals()
+    g.transcripts()
     """
     Your code to initiate GradeBook and generate the required output files.
     """
