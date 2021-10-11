@@ -61,11 +61,19 @@ class GradeBook:
                         student_grade=st.gradeGen()
                         file.write(course_id+"   "+course_name+"   "+str(student_mark)+"    "+str(student_grade)+"\n")
             file.close()
-                        
-            
         else:
             print("Invalid")
 
+    def passes(self):
+        winners=set()
+        file=open("passes.txt",'w')
+        for course in list(self.courses.values()):
+            studs=course.getClasslist()
+            for st in studs:
+                st_percent=st.percentageGen()
+                if st_percent < 40:
+                    winners.add((st.getRollNum(),st.getName()))
+        
 #You may define any additional claases or functions below this comment.
 
 ##########################################################################
@@ -74,7 +82,7 @@ def testGradeBook():
     g=GradeBook()
     g.readManyFiles()
     print(len(g.courses))
-    g.prinTranscript("S1000")
+    g.prinTranscript("S100")
     """
     Your code to initiate GradeBook and generate the required output files.
     """
