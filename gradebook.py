@@ -138,7 +138,51 @@ class GradeBook:
     #             st_percent=st.percentageGen()
     #             if st_percent < 40:
     #                 winners.add((st.getRollNum(),st.getName()))
+    def passes(self):
+        failers=set()
+        file=open("passes.txt",'w')
+        for course in list(self.courses.values()):
+            studs=course.getClasslist()
+            for st in studs:
+                st_percent=st.percentageGen()
+                if st_percent < 40:
+                    failers.add((st.getRollNum(),st.getName()))
+        c=self.courses.values()
+        c_tolist=list(c)
+        students=c_tolist[0].getClasslist()
+        students=[(i.getRollNum(),i.getName()) for i in students]
+        failers=list(failers)
+        winners=[i for i in students if i not in failers]
+        for winner in winners:
+            file.write(winner[0]+"  "+winner[1]+"\n")
+        file.close()
         
+        
+    def grades(self):
+        c=self.courses.values()
+        c_tolist=list(c)
+        c_ids=[i.getCourseID() for i in c_tolist]
+        file=open("grades.txt",'w')
+        file.write("rollnum    name   "+c_ids[0]+"   "+c_ids[1]+"   "+c_ids[2]+"  "+c_ids[3]+"   "+c_ids[4]+"   Avg\n \n")
+        students=c_tolist[0].getClasslist()
+        students=[(i.getRollNum(),i.getName()) for i in students] 
+        for student in students:
+            std_marks=[]
+            file.write(str(student[0])+"     "+str(student[1])+"    ")
+            for course in c_tolist:
+                course_stds=course.getClasslist()
+                for i in course_stds:
+                    id=i.getRollNum()
+                    if id == student[0]:
+                        grade=i.gradeGen()
+                        percent=i.percentageGen()
+                        std_marks.append((percent,grade))
+                        break
+            for i in std_marks:
+                file.write(str(i[0])+"    ")
+            marks=[i[0] for i in std_marks]
+            file.write(str(sum(marks)/len(std_marks))+"\n")
+        file.close()
 #You may define any additional claases or functions below this comment.
 
 ##########################################################################
@@ -150,6 +194,9 @@ def testGradeBook():
     g.prinTranscript("S100")
     g.referrals()
     g.transcripts()
+    g.prinTranscript("S1000")
+    g.passes()
+    g.grades()
     """
     Your code to initiate GradeBook and generate the required output files.
     """

@@ -1,0 +1,7 @@
+rollnum    name   04808E   DSA001   DATA001  DATAI43   0454MATH   Avg
+ 
+S1000     George Williams    79.8    67.8    79.8    79.8    79.8    77.4
+S1002     Elaine Hazimana    87.4    71.4    87.4    87.4    87.4    84.2
+S1003     Peter Pathos    33.0    16.6    33.0    33.0    33.0    29.72
+S1005     Celestine Taylor    88.4    70.4    88.4    88.4    88.4    84.8
+S1006     Khalil Abdi    83.0    67.4    83.0    83.0    83.0    79.88
