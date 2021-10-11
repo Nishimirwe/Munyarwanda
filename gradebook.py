@@ -36,6 +36,35 @@ class GradeBook:
             course=Course()
             course.addCourseDataFromFile(file)
             self.courses[course.getCourseID()]=course
+            
+            
+    def prinTranscript(self, st_roll):
+        if self.find(st_roll):
+            c=self.courses.values()
+            c_tolist=list(c)
+            students=c_tolist[0].getClasslist()
+            file=open(str(st_roll)+"_transcript.txt",'w')
+            for student in students:
+                roll=student.getRollNum()
+                if roll == st_roll:
+                    name=student.getName()
+                    file.write(roll+"   "+name+"\n")
+            for course in c_tolist:
+                stds=course.getClasslist()
+                for st in stds:
+                    st_rollNum=st.getRollNum()
+                    if st_roll == st_rollNum:
+                        # do here
+                        course_id=course.getCourseID()
+                        course_name=course.getCourseName()
+                        student_mark=st.percentageGen()
+                        student_grade=st.gradeGen()
+                        file.write(course_id+"   "+course_name+"   "+str(student_mark)+"    "+str(student_grade)+"\n")
+            file.close()
+                        
+            
+        else:
+            print("Invalid")
 
 #You may define any additional claases or functions below this comment.
 
@@ -45,6 +74,7 @@ def testGradeBook():
     g=GradeBook()
     g.readManyFiles()
     print(len(g.courses))
+    g.prinTranscript("S1000")
     """
     Your code to initiate GradeBook and generate the required output files.
     """
