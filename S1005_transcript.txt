@@ -1,0 +1,6 @@
+S1005   Celestine Taylor
+04808E   Programming and Problem Solving II   88.4    B
+DSA001   Data Structure   70.4    C
+DATA001   Data Base   88.4    B
+DATAI43   Data Inference   88.4    B
+0454MATH   Mathematics   88.4    B

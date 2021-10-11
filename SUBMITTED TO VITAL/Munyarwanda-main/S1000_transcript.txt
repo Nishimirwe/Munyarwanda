@@ -1,0 +1,6 @@
+S1000   George Williams
+04808E   Programming and Problem Solving II   79.8    C
+DSA001   Data Structure   67.8    C
+DATA001   Data Base   79.8    C
+DATAI43   Data Inference   79.8    C
+0454MATH   Mathematics   79.8    C

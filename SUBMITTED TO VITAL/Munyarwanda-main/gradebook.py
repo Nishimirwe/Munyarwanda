@@ -181,7 +181,7 @@ class GradeBook:
             for i in std_marks:
                 file.write(str(i[0])+"    ")
             marks=[i[0] for i in std_marks]
-            file.write(str(round(sum(marks)/len(std_marks),2))+"\n")
+            file.write(str(sum(marks)/len(std_marks))+"\n")
         file.close()
 #You may define any additional claases or functions below this comment.
 
@@ -190,8 +190,8 @@ class GradeBook:
 def testGradeBook():
     g=GradeBook()
     g.readManyFiles()
-    g.prinTranscript("S1000")
-    g.prinTranscript("S1005")
+    print(len(g.courses))
+    g.prinTranscript("S100")
     g.referrals()
     g.transcripts()
     g.prinTranscript("S1000")

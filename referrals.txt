@@ -1,5 +1,11 @@
 S1002  Elaine Hazimana
      04808E   Programming and Problem Solving II  8.0  E
+S1003  Peter Pathos
+     04808E   Programming and Problem Solving II  33.0  E
+     DSA001   Data Structure  16.6  E
+     DATA001   Data Base  33.0  E
+     DATAI43   Data Inference  33.0  E
+     0454MATH   Mathematics  33.0  E
 S1006  Khalil Abdi
      04808E   Programming and Problem Solving II  29.4  E
      DSA001   Data Structure  8.0  E
