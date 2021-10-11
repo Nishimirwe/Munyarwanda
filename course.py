@@ -268,6 +268,3 @@ course2.addStudentsFromFile('data.txt')
 course2.printCourseDetails('results.txt')
 
 """
-c=Course()
-c.addCourseDataFromFile("course1.txt")
-print(len(c.getCourseTAs()))

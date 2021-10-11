@@ -4,6 +4,8 @@
 @date:
 Description: <Any useful comments>
 """
+from course import Course
+
 class GradeBook:
     def __init__(self):
         self.courses=dict()
@@ -27,14 +29,24 @@ class GradeBook:
         else:
             return False
         
-    def addCourseDataFromFile(self):
+    def readManyFiles(self):
+        from_files=input("Enter 5 files: ")
+        from_files=from_files.split(",")
+        for file in from_files:
+            course=Course()
+            course.addCourseDataFromFile(file)
+            self.courses[course.getCourseID()]=course
 
 #You may define any additional claases or functions below this comment.
 
 ##########################################################################
 
 def testGradeBook():
+    g=GradeBook()
+    g.readManyFiles()
+    print(len(g.courses))
     """
     Your code to initiate GradeBook and generate the required output files.
     """
 
+testGradeBook()
