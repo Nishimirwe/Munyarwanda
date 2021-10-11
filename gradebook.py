@@ -183,6 +183,21 @@ class GradeBook:
             marks=[i[0] for i in std_marks]
             file.write(str(round(sum(marks)/len(std_marks),2))+"\n")
         file.close()
+        
+        
+    def courseGrade(self,course_id):
+        if self.isEmpty():
+            return "Empty dictionary"
+        file=open(course_id+"_grades.txt",'w')
+        for course in self.courses.values():
+            if course.getCourseID() == course_id:
+                for student in course.getClasslist():
+                    roll=student.getRollNum()
+                    name=student.getName()
+                    percent=student.percentageGen()
+                    grade=student.gradeGen()
+                    file.write(str(roll)+"   "+str(name)+"     "+str(percent)+"   "+str(grade)+"\n" )
+        file.close()
 #You may define any additional claases or functions below this comment.
 
 ##########################################################################
@@ -197,6 +212,7 @@ def testGradeBook():
     g.prinTranscript("S1000")
     g.passes()
     g.grades()
+    g.courseGrade("DSA001")
     """
     Your code to initiate GradeBook and generate the required output files.
     """
