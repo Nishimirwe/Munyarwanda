@@ -1,5 +1,5 @@
-04808E
-Programming and Problem Solving II
+DATAI43
+Data Inference
 Fall 2021
 Frank Ike
 Fikita, Nikita, Vikita
